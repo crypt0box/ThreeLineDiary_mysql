@@ -1,0 +1,35 @@
+{% extends "ThreeLineDiary/base.html" %}
+{% block content %}
+<div class="container">
+
+    <div class="row">
+        <!-- 左側、ユーザーエリア -->
+        <div class="col-md-auto">
+            <div class="card img-thumbnail bg-light mb-3 mt-3" style="width: 15rem;">
+                {% if user.image %}
+                <img class="card-img-top" src="/{{ user.image.url }}" width="318" height="180" alt="Card image">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title text-center">{{ user.username }}</h5>
+                    <a class="btn btn-outline-primary btn-sm btn-block" href="{% url 'ThreeLineDiary:post_create' user.pk %}" role="button">日記を書く</a>
+                    <a class="btn btn-outline-primary btn-sm btn-block" href="{% url 'ThreeLineDiary:icon_update' user.pk %}" role="button">ユーザーアイコンの編集</a>
+                </div>
+            </div>
+        </div>
+        <!-- 左側、ユーザーエリアおわり -->
+        <!--右側、日記エリア-->
+        <div class="col-md-9">
+                 {% for post in user.post_set.all reversed %}
+                     <div class="card bg-light mb-3 mt-3 mx-3" style="max-width: 50rem;">
+                         <div class="card-body bg-light">
+                            <p class="card-text">・{{ post.line_one }}<br>・{{ post.line_two }}<br>・{{ post.line_three }}</p>
+                         </div>
+                      <div class="card-footer bg-white">{{ post.created_at }}</div>
+                     </div>
+                 {% endfor %}
+        </div>
+        <!-- 左側、日記エリアおわり -->
+    </div>
+</div>
+
+{% endblock %}

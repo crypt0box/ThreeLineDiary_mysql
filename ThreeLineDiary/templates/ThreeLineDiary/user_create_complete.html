@@ -1,0 +1,16 @@
+{% extends "ThreeLineDiary/base.html" %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+        <div class="card card-body m-3" >
+            <p>
+                本登録が完了しました。<br>
+                登録されたユーザー名とパスワードでログインしてください。<br><hr>
+                <a class="btn btn-primary" href="{% url 'ThreeLineDiary:login' %}">ログイン</a>
+            </p>
+        </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

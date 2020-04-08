@@ -1,0 +1,22 @@
+{% extends 'ThreeLineDiary/base.html' %}
+
+{% block content %}
+<div class="container">
+ <div class="row">
+ {% for post in post_list %}
+     {% if post.active %}
+     <div class="col-sm-2"></div>
+     <div class="col-sm-8">
+         <div class="card bg-light m-sm-1" style="max-width: 50rem;">
+                 <div class="card-body bg-light">
+                 <p class="card-text">・{{ post.line_one }}<br>・{{ post.line_two }}<br>・{{ post.line_three }}</p>
+                 </div>
+             <div class="card-footer bg-white">{{ post.created_at }}</div>
+         </div>
+     </div>
+     <div class="col-sm-2"></div>
+     {% endif %}
+ {% endfor %}
+ </div>
+</div>
+{% endblock %}
